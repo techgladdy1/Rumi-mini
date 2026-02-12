@@ -241,7 +241,7 @@ function setupCommandHandlers(socket,number){
           const search=await yts(q);
           if(!search?.videos?.length){await reply('❌ No results found!');break;}
           const vid=search.videos[0];
-          const apiRes=await axios.get(`https://api.yupra.my.id/api/downloader/ytmp3?url=${encodeURIComponent(vid.url)}`,{timeout:60000});
+          const apiRes=await axios.get(`https://api.vreden.my.id/api/v1/download/play/audio?query=${encodeURIComponent(vid.url)}`,{timeout:60000});
           if(!apiRes?.data?.result?.download){await reply('❌ API failed! Try again.');break;}
           const dlUrl=apiRes.data.result.download;
           const songTitle=apiRes.data.result.title||vid.title;
