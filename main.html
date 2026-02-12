@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ғʀᴇᴇ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      padding: 20px;
+      position: relative;
+    }
+
+    .background-effects {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    /* Animated gradient orbs */
+    .gradient-orbs {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.5;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    .orb-1 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, #ff6b9d, #c471ed);
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .orb-2 {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, #4facfe, #00f2fe);
+      bottom: 10%;
+      right: 10%;
+      animation-delay: 5s;
+    }
+
+    .orb-3 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, #43e97b, #38f9d7);
+      top: 50%;
+      left: 50%;
+      animation-delay: 10s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) scale(1);
+      }
+      33% {
+        transform: translate(50px, -50px) scale(1.1);
+      }
+      66% {
+        transform: translate(-30px, 30px) scale(0.9);
+      }
+    }
+
+    /* Neon particles */
+    .neon-particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .neon-particles span {
+      position: absolute;
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff, #4facfe);
+      animation: rise 12s linear infinite;
+      box-shadow: 0 0 10px #4facfe, 0 0 20px #4facfe;
+      opacity: 0.8;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(110vh) scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .box {
+      position: relative;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      padding: 80px 35px 35px;
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+      text-align: center;
+      width: 100%;
+      max-width: 480px;
+      animation: slideUp 0.8s ease-out;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      margin-top: 40px;
+    }
+
+    @keyframes slideUp {
+      from { 
+        opacity: 0; 
+        transform: translateY(50px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+
+    .avatar {
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 5px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 10px rgba(255, 255, 255, 0.1);
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      z-index: 3;
+      animation: avatarPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes avatarPulse {
+      0%, 100% {
+        box-shadow: 
+          0 10px 40px rgba(0, 0, 0, 0.3),
+          0 0 0 10px rgba(255, 255, 255, 0.1);
+      }
+      50% {
+        box-shadow: 
+          0 15px 50px rgba(102, 126, 234, 0.5),
+          0 0 0 15px rgba(255, 255, 255, 0.2);
+      }
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .whatsapp-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .whatsapp-icon {
+      font-size: 3rem;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 0 20px rgba(37, 211, 102, 0.5));
+      animation: iconFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes iconFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h2 {
+      background: linear-gradient(135deg, #fff, #4facfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0 0 8px;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    }
+
+    h6 {
+      color: rgba(255, 255, 255, 0.9);
+      margin: 0 0 15px;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .input-container {
+      margin: 20px 0;
+      display: flex;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .input-container:focus-within {
+      box-shadow: 0 15px 40px rgba(79, 172, 254, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .input-container input {
+      width: 70%;
+      padding: 1rem 1.2rem;
+      border: none;
+      outline: none;
+      background: rgba(255, 255, 255, 0.95);
+      font-size: 1rem;
+      color: #333;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .input-container input::placeholder {
+      color: #999;
+      font-weight: 400;
+    }
+
+    .input-container button {
+      width: 30%;
+      padding: 1rem;
+      border: none;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Manrope', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .input-container button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .input-container button:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .input-container button:hover {
+      background: linear-gradient(135deg, #128c7e, #075e54);
+      box-shadow: 0 0 25px rgba(37, 211, 102, 0.6);
+      transform: scale(1.05);
+    }
+
+    .input-container button:disabled {
+      background: #999;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .centered-text {
+      margin: 15px 0;
+      color: white;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .info-container {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 1.2rem;
+      border-radius: 20px;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-direction: column;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin: 20px 0;
+      box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .info-item i {
+      color: #4facfe;
+      width: 20px;
+      font-size: 1.1rem;
+    }
+
+    #copy {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 0.8rem 1.5rem;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: inline-block;
+      margin: 15px 0;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    #copy:hover {
+      background: linear-gradient(135deg, #764ba2, #667eea);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6);
+    }
+
+    .instructions {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.95);
+      text-align: left;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 1.2rem;
+      border-radius: 15px;
+      margin: 20px 0;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      line-height: 1.7;
+    }
+
+    .instructions strong {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      color: #fff;
+    }
+
+    .instructions ol {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .instructions li {
+      margin: 8px 0;
+      font-weight: 500;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .join-btn {
+      flex: 1;
+      min-width: 140px;
+      padding: 0.9rem 1.2rem;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: white;
+      border-radius: 12px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .join-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
+      background: linear-gradient(135deg, #128c7e, #075e54);
+    }
+
+    .clear-btn {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      padding: 0.9rem 1.2rem;
+      border-radius: 12px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: 'Manrope', sans-serif;
+      min-width: 100px;
+    }
+
+    .clear-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+    }
+
+    .whatsapp-footer {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 20px;
+      font-weight: 500;
+    }
+
+    /* Toast notifications */
+    .toast-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .toast {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 15px;
+      padding: 16px 20px;
+      min-width: 320px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transform: translateX(400px);
+      animation: slideIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+      border-left: 4px solid;
+    }
+
+    @keyframes slideIn {
+      to { transform: translateX(0); }
+    }
+
+    .toast.hide {
+      animation: slideOut 0.3s ease-out forwards;
+    }
+
+    @keyframes slideOut {
+      to { 
+        transform: translateX(400px);
+        opacity: 0;
+      }
+    }
+
+    .toast-icon {
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .toast.success { 
+      border-left-color: #25d366;
+    }
+    .toast.success .toast-icon { 
+      color: #25d366;
+    }
+
+    .toast.error { 
+      border-left-color: #ff6b6b;
+    }
+    .toast.error .toast-icon { 
+      color: #ff6b6b;
+    }
+
+    .toast.info { 
+      border-left-color: #4facfe;
+    }
+    .toast.info .toast-icon { 
+      color: #4facfe;
+    }
+
+    .toast-content {
+      flex: 1;
+    }
+
+    .toast-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    .toast-message {
+      font-size: 0.85rem;
+      color: #666;
+      font-weight: 500;
+    }
+
+    .toast-close {
+      background: none;
+      border: none;
+      color: #999;
+      cursor: pointer;
+      font-size: 1.3rem;
+      padding: 0;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .toast-close:hover {
+      background: rgba(0, 0, 0, 0.1);
+      color: #333;
+    }
+
+    /* Status indicator */
+    .status-indicator {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #25d366;
+      margin-left: 8px;
+      animation: pulse 2s ease-in-out infinite;
+      box-shadow: 0 0 10px #25d366;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 0 10px #25d366;
+      }
+      50% {
+        box-shadow: 0 0 20px #25d366, 0 0 30px #25d366;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .box {
+        padding: 70px 25px 25px;
+        margin-top: 30px;
+      }
+      
+      .avatar {
+        width: 100px;
+        height: 100px;
+        top: -50px;
+      }
+      
+      .input-container {
+        flex-direction: column;
+      }
+      
+      .input-container input,
+      .input-container button {
+        width: 100%;
+        border-radius: 12px;
+      }
+      
+      .input-container input {
+        border-radius: 12px 12px 0 0;
+      }
+      
+      .input-container button {
+        border-radius: 0 0 12px 12px;
+      }
+      
+      .actions {
+        flex-direction: column;
+      }
+
+      .join-btn,
+      .clear-btn {
+        width: 100%;
+      }
+
+      .toast {
+        min-width: 280px;
+        right: 10px;
+      }
+
+      .toast-container {
+        right: 10px;
+        left: 10px;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-effects">
+    <div class="gradient-orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+    <div class="neon-particles" id="neon-particles"></div>
+  </div>
+  
+  <div class="toast-container" id="toastContainer"></div>
+  
+  <div class="container">
+    <div class="box">
+      <div class="avatar">
+        <img src="https://files.catbox.moe/sb24ud.jpg" alt="FREE sc Bot">
+      </div>
+      
+      <div class="whatsapp-header">
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
+        <h2>ғʀᴇᴇ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ</h2>
+        <h6>ᴄʀᴇᴀᴛᴇᴅ ʙʏ ᴍᴀʟᴠɪɴ ᴛᴇᴄʜ</h6>
+      </div>
+      
+      <h6><i class="fas fa-mobile-alt"></i> Enter your number with country code</h6>
+      
+      <div class="input-container">
+        <input placeholder="ᴇ.ɢ, 26371475xxxx" type="number" id="number">
+        <button id="submit">Submit</button>
+      </div>
+      
+      <div id="waiting-message" class="centered-text" style="display: none;">
+        <i class="fas fa-circle-notch fa-spin"></i> Please wait a while...
+      </div>
+      
+      <main id="pair"></main>
+
+      <div class="info-container">
+        <div class="info-item">
+          <i class="fas fa-clock"></i> Time: <span id="uptime">00:00:00</span>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-server"></i> Status: <span id="status">Online</span><span class="status-indicator"></span>
+        </div>
+      </div>
+      
+      <div class="instructions">
+        <strong><i class="fas fa-info-circle"></i> Pairing Instructions:</strong>
+        <ol>
+          <li>Enter your WhatsApp number with country code</li>
+          <li>Click "Submit" to generate your code</li>
+          <li>Open WhatsApp and link device, select pair with phone number, enter your code... n enjoy the service</li>
+          <li>You'll receive a confirmation when paired</li>
+        </ol>
+      </div>
+      
+      <div class="actions">
+        <button class="join-btn" id="joinBtn">
+          <i class="fab fa-whatsapp"></i> Join Channel
+        </button>
+        <button class="clear-btn" id="clearBtn">
+          <i class="fas fa-eraser"></i> Clear
+        </button>
+      </div>
+      
+      <div class="whatsapp-footer">
+        This is not an official WhatsApp product. Use at your own risk.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Create neon particles
+    const particleContainer = document.getElementById("neon-particles");
+    
+    for (let i = 0; i < 30; i++) {
+      const particle = document.createElement("span");
+      particle.style.left = Math.random() * 100 + "vw";
+      particle.style.animationDuration = (8 + Math.random() * 6) + "s";
+      particle.style.animationDelay = (Math.random() * 5) + "s";
+      const colors = ['#4facfe', '#00f2fe', '#43e97b', '#38f9d7', '#fa709a', '#fee140'];
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      particle.style.background = `radial-gradient(circle, #fff, ${randomColor})`;
+      particle.style.boxShadow = `0 0 10px ${randomColor}, 0 0 20px ${randomColor}`;
+      particleContainer.appendChild(particle);
+    }
+
+    // Live Clock Time
+    const uptime = document.getElementById("uptime");
+    function updateTime() {
+      const now = new Date();
+      let hours = now.getHours();
+      let mins = String(now.getMinutes()).padStart(2, '0');
+      let secs = String(now.getSeconds()).padStart(2, '0');
+      let ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
+      uptime.textContent = `${hours}:${mins}:${secs} ${ampm}`;
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    // Toast notification system
+    function showToast(type, title, message) {
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      
+      const icons = {
+        success: 'fa-check-circle',
+        error: 'fa-times-circle',
+        info: 'fa-info-circle'
+      };
+      
+      toast.innerHTML = `
+        <div class="toast-icon"><i class="fas ${icons[type]}"></i></div>
+        <div class="toast-content">
+          <div class="toast-title">${title}</div>
+          <div class="toast-message">${message}</div>
+        </div>
+        <button class="toast-close" onclick="this.parentElement.remove()">
+          <i class="fas fa-times"></i>
+        </button>
+      `;
+      
+      document.getElementById('toastContainer').appendChild(toast);
+      
+      setTimeout(() => {
+        toast.classList.add('hide');
+        setTimeout(() => toast.remove(), 300);
+      }, 5000);
+    }
+
+    // Code generation
+    let a = document.getElementById("pair");
+    let b = document.getElementById("submit");
+    let c = document.getElementById("number");
+    let waitingMessage = document.getElementById("waiting-message");
+    let statusElement = document.getElementById("status");
+
+    async function Copy() {
+      let text = document.getElementById("copy").innerText;
+      let obj = document.getElementById("copy");
+      await navigator.clipboard.writeText(obj.innerText.replace('CODE: ', ''));
+      obj.innerText = "COPIED ✓";
+      obj.style = "color: #25d366; font-weight: 800;";
+      showToast('success', 'Code Copied!', 'Your pairing code has been copied to clipboard.');
+      
+      setTimeout(() => {
+        obj.innerText = text;
+        obj.style = "color: white; font-weight: 700;";
+      }, 800);
+    }
+
+    b.addEventListener("click", async (e) => {
+      e.preventDefault();
+      if (!c.value) {
+        a.innerHTML = '<div style="color:#ff6b6b;font-weight:600;margin-top:15px;font-size:0.95rem"><i class="fas fa-exclamation-circle"></i> Enter your WhatsApp number with Country Code</div>';
+        showToast('error', 'Missing Number', 'Please enter your WhatsApp number with country code.');
+      } else if (c.value.replace(/[^0-9]/g, "").length < 11) {
+        a.innerHTML = '<div style="color:#ff6b6b;font-weight:600;margin-top:15px;font-size:0.95rem"><i class="fas fa-times-circle"></i> Invalid Number</div>';
+        showToast('error', 'Invalid Number', 'Please enter a valid phone number.');
+      } else {
+        const number = c.value.replace(/[^0-9]/g, "");
+        c.type = "text";
+        c.value = "+" + number;
+        c.style = "color: #333; font-size: 1.1rem; font-weight: 700;";
+        a.innerHTML = '<div style="color:white;font-weight:600;margin-top:15px;font-size:0.95rem"><i class="fas fa-spinner fa-spin"></i> Generating code...</div>';
+        waitingMessage.style.display = "block";
+        statusElement.textContent = "Processing";
+        showToast('info', 'Processing', 'Generating your pairing code...');
+        
+        try {
+          let res = await fetch(`/code?number=${number}`);
+          let data = await res.json();
+          let code = data.code || "Service Unavailable";
+          a.innerHTML = `<div id="copy" onclick="Copy()" style="color:white;font-weight:700;cursor:pointer;margin-top:15px;font-size:1.1rem;">CODE: <span style="color:#4facfe;font-weight:800;">${code}</span></div>`;
+          statusElement.textContent = "Paired";
+          showToast('success', 'Code Generated!', 'Your pairing code is ready. Click to copy.');
+        } catch (error) {
+          a.innerHTML = '<div style="color:#ff6b6b;font-weight:600;margin-top:15px;font-size:0.95rem"><i class="fas fa-exclamation-triangle"></i> Service Unavailable</div>';
+          statusElement.textContent = "Error";
+          showToast('error', 'Service Error', 'Unable to generate code. Please try again.');
+        } finally {
+          waitingMessage.style.display = "none";
+        }
+      }
+    });
+
+    // Clear button functionality
+    document.getElementById("clearBtn").addEventListener("click", () => {
+      c.value = "";
+      c.type = "number";
+      c.style = "";
+      a.innerHTML = "";
+      statusElement.textContent = "Online";
+      showToast('info', 'Cleared', 'Form has been reset.');
+    });
+
+    // Join button functionality
+    document.getElementById("joinBtn").addEventListener("click", () => {
+      window.open("https://whatsapp.com/channel/0029VbB3YxTDJ6H15SKoBv3S", "_blank");
+      showToast('success', 'Opening Channel', 'Redirecting to WhatsApp channel...');
+    });
+
+    // Allow pressing Enter to submit
+    c.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        b.click();
+      }
+    });
+
+    // Welcome toast
+    setTimeout(() => {
+      showToast('info', 'Welcome!', 'Free WhatsApp Bot Pairing Service');
+    }, 800);
+  </script>
+</body>
+</html>

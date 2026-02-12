@@ -1,0 +1,18 @@
+module.exports = {
+  AUTO_VIEW_STATUS: 'true',
+  AUTO_LIKE_STATUS: 'true',
+  AUTO_RECORDING: 'true',
+  AUTO_LIKE_EMOJI: ['🌸','🪴','💫','🍂','🌟','🫀','👀','🤖','🚩','🥰','🗿','💜','💙','🌝','🖤','💚'],
+  PREFIX: '.',
+  MAX_RETRIES: 3,
+  GROUP_INVITE_LINK: 'https://chat.whatsapp.com/Dh7gxX9AoVD8gsgWUkhB9r',
+  IMAGE_PATH: 'https://files.catbox.moe/f9gwsx.jpg',
+  NEWSLETTER_JID: '120363402507750390@newsletter',
+  OTP_EXPIRY: 300000,
+  BOT_NAME: 'ʀᴜᴍɪ-ɪɪ',
+  OWNER_NAME: 'ɢʟᴀᴅᴅʏᴋɪɴɢ',
+  OWNER_NUMBER: '263775953409',
+  BOT_VERSION: '2.0.0',
+  BOT_FOOTER: '> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ʀᴜᴍɪ-ɪɪ',
+  CHANNEL_LINK: 'https://whatsapp.com/channel/0029VbB3YxTDJ6H15SKoBv3S',
+};
